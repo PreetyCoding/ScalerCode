@@ -1,0 +1,46 @@
+public class Solution {
+//This will take maximum time, as it is going to take two loops, So time complexity is of O(N*N).
+    /*public int solve(int[] A) {
+        int max =0;
+        for(int i=0;i<A.length;i++){
+            for(int j=0;j<A.length;j++){
+                if(A[j]>0 && max < A[i]%A[j])
+                    max = A[i]%A[j];
+            }
+        }  
+        return max;
+        
+    }*/
+    
+    
+    // This would have O(NLogn(N)) time complexity as the sorting function would take that much time
+    /*public int solve(int[] A) {
+        int max =0;
+        Arrays.sort(A);
+        int length = A.length;
+        if(length>1){
+         max = A[length-2]%A[length-1];
+        }
+         else 
+         max = 0;
+        return max;
+        
+    }*/
+    
+    //We have to decrease the time complexity more. We are only concerned with getting the second max of which it will give the maximum mod if divided by highest number 
+    //and mod would then be second highest
+    public int solve(int[] A) {
+        int max =0;
+        int first=0, second = 0;
+        for(int i=0;i<A.length;i++){
+            if(first<A[i]){
+                second = first;
+                first = A[i];
+            }
+            if(first>A[i] && second<A[i])
+                second = A[i];
+        }  
+        return second;
+        
+    }
+}
